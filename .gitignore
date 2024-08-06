@@ -1,0 +1,21 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+
+# Enviroment file
+.env
+
+# Directories for build and dependencies
+bin/
+pkg/
+out/
+
+# IDE/editor specific files
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# MacOS specific files
+.DS_Store
