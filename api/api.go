@@ -104,8 +104,9 @@ func (req SolveVerityRequestBody) Validate() error {
 
 // Solve Verity Outside Dissection Response
 type SolveVerityResponse struct {
-	OutsideDissectionSteps []string
-	InsideDissectionSteps  [][]string
+	OutsideDissectionSteps        []string
+	OutsideTargetStatueShapeNames [3]Shape3d
+	InsideDissectionSteps         [][]string
 }
 
 type Error struct {

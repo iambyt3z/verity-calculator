@@ -8,6 +8,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/iambyt3z/verity-calculator/api"
 	"github.com/iambyt3z/verity-calculator/internal/middleware"
+	"github.com/iambyt3z/verity-calculator/internal/verity_calculator"
 )
 
 func Handler(app *fiber.App) {
@@ -28,6 +29,8 @@ func Handler(app *fiber.App) {
 			})
 		}
 
+		log.Println("Request JSON parsed successfully")
+
 		err_validate := params.Validate()
 
 		if err_validate != nil {
@@ -38,10 +41,29 @@ func Handler(app *fiber.App) {
 			})
 		}
 
+		log.Println("Request JSON validated successfully")
+
+		log.Println("Solving verity dissection...")
+
+		outsideDissectionSteps, outsideTargetStatueShapeNames := verity_calculator.SolveOutsideDissection(
+			params.InsideRoomLeftStatueSymbol,
+			params.InsideRoomMidStatueSymbol,
+			params.InsideRoomRightStatueSymbol,
+			params.OutsideRoomLeftStatueSymbol,
+			params.OutsideRoomMidStatueSymbol,
+			params.OutsideRoomRightStatueSymbol,
+			params.IsChallengePhaseTwo,
+		)
+
+		log.Println("Verity dissection solved")
+
 		var response = api.SolveVerityResponse{
-			OutsideDissectionSteps: []string{},
-			InsideDissectionSteps:  [][]string{},
+			OutsideDissectionSteps:        outsideDissectionSteps,
+			OutsideTargetStatueShapeNames: outsideTargetStatueShapeNames,
+			InsideDissectionSteps:         [][]string{},
 		}
+
+		log.Println("Response prepared successfully")
 
 		return c.Status(fiber.StatusOK).JSON(response)
 	})
