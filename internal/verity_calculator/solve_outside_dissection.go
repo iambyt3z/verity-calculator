@@ -20,8 +20,6 @@ func SimulateOutsideDissection(
 		SubtractStatues(&(*initialOutsideRoomStatues)[2], &(*targetOutsideRoomStatues)[2]),
 	}
 
-	fmt.Println(shapesExcesses)
-
 	for !shapesExcesses[0].IsBalanced() ||
 		!shapesExcesses[1].IsBalanced() ||
 		!shapesExcesses[2].IsBalanced() {
@@ -102,9 +100,11 @@ func SolveOutsideDissection(
 		}
 	}
 
-	fmt.Println(targetShapeNames[0], targetShapeNames[1], targetShapeNames[2])
+	log.Println("Calculated target statue shapes for outside dissection")
 
 	result := SimulateOutsideDissection(&initialStatues, &targetStatues)
+
+	log.Println("Outside dissection simulation done")
 
 	return result, targetShapeNames
 }

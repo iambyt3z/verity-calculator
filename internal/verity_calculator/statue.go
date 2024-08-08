@@ -19,9 +19,9 @@ var shapeNameMap2d = map[KeyType]api.Shape2d{
 var shapeNameMap3d = map[KeyType]api.Shape3d{
 	{2, 0, 0}: api.Sphere,
 	{0, 2, 0}: api.Cube,
-	{0, 0, 2}: api.Prism,
+	{0, 0, 2}: api.Pyramid,
 	{1, 1, 0}: api.Cylinder,
-	{0, 1, 1}: api.Pyramid,
+	{0, 1, 1}: api.Prism,
 	{1, 0, 1}: api.Cone,
 }
 
@@ -34,9 +34,9 @@ var statueFromShapeMap2d = map[api.Shape2d]Statue{
 var statueFromShapeMap3d = map[api.Shape3d]Statue{
 	api.Sphere:   {2, 0, 0},
 	api.Cube:     {0, 2, 0},
-	api.Prism:    {0, 0, 2},
+	api.Pyramid:  {0, 0, 2},
 	api.Cylinder: {1, 1, 0},
-	api.Pyramid:  {0, 1, 1},
+	api.Prism:    {0, 1, 1},
 	api.Cone:     {1, 0, 1},
 }
 
