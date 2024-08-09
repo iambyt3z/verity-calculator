@@ -2,8 +2,10 @@ package handlers
 
 import (
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/iambyt3z/verity-calculator/api"
@@ -12,6 +14,12 @@ import (
 )
 
 func Handler(app *fiber.App) {
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: os.Getenv("ALLOW_CORS"),
+		AllowMethods: "GET,POST,PUT,DELETE,OPTIONS",
+		AllowHeaders: "Content-Type, Authorization",
+	}))
+
 	app.Use(logger.New())
 	app.Use(recover.New())
 	app.Use(middleware.Authorization)
