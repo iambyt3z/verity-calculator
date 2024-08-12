@@ -11,7 +11,7 @@ func SimulateOutsideDissection(
 	initialOutsideRoomStatues *[3]Statue,
 	targetOutsideRoomStatues *[3]Statue,
 ) []string {
-	var statuePosition [3]string = [3]string{"Left", "Mid", "Right"}
+	var statuePosition [3]string = [3]string{"Left", "Middle", "Right"}
 	var simulation []string = make([]string, 0, 16)
 
 	var shapesExcesses [3]ShapesExcess = [3]ShapesExcess{
